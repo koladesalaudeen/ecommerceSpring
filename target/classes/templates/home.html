@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Menu</title>
+    <link rel="stylesheet" th:href="@{css/fragment.css}">
+</head>
+<body>
+   <header th:insert="_fragments :: navbar"></header>
+   <table>
+       <thead>
+       <tr>
+           <td>Image</td>
+           <td>Product Name</td>
+           <td>Quantity</td>
+           <td>Edit</td>
+           <td>Delete</td>
+       </tr>
+       </thead>
+       <tbody>
+       <tr th:each="item :${products}">
+           <td><img th:src="${item.getImageUrl()}" th:style="'width:50px;height:50px'" /></td>
+           <td th:text="${item.getProduct_name}"></td>
+           <td th:text="${item.getQuantity}"></td>
+           <td><a th:href="@{/edit(id=${item.getId})}"><button>Edit</button></a></td>
+           <td><a th:href="@{/delete(id=${item.getId})}"><button>Delete</button></a></td>
+       </tr>
+       </tbody>
+   </table>
+   <tr th:if="${totalPages > 1}">
+       <a th:href="@{/products/(page=0)}">&laquo;</a>
+       <td th:each="i : ${#numbers.sequence(0, totalPages -1)}"
+           th:class="${currentPage == i} ? active : ''">
+           <a th:href="@{/products/(page=${i})}" th:text="${i+1}"></a>
+       </td>
+       <td th:class="${currentPage  == totalPages -1} ? disabled : ''">
+           <a th:href="@{/products/(page=${totalPages -1})}">&raquo;</a>
+       </td>
+   </tr>
+</body>
+</html>

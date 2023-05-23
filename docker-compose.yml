@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+  postgres:
+    image: postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - data:/dataEcomm
+  app:
+    build: .
+    environment:
+      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_PASSWORD: admin
+      SPRING_DATASOURCE_URL: jdbc:postgresql://database:5432/postgres
+volumes:
+  data: {}

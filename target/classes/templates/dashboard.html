@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en" xmlns:th = "https://www.thymeleaf.org">
+  <head>
+  	<title>Table 06</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" th:href="@{css/style2.css}" />
+    </head>
+	<body>
+	<section id="main">
+		<div class="container">
+			<div th:style="'display:flex;justify-content:center'">
+				<ul>
+					<li class="admin-list" th:style="'display : inline-block'" data-th-for="media">
+						<span class="vertical-center" th:style="'border:1px solid grey;border-radius:5px'">
+							<img th:src="@{icon/gallery.png}" th:style="'width:30px;height:30px;'">
+							Add/Edit Media
+						</span>
+					</li>
+					<li class="admin-list" th:style="'display : inline-block'" data-th-for="category">
+						<span class="vertical-center" th:style="'border : 1px solid grey;border-radius:5px'">
+							<img th:src="@{icon/categories.png}" th:style="'width:30px;height:30px;'">
+							Add/Edit Category
+						</span>
+					</li>
+					<li class="admin-list" th:style="'display : inline-block'" data-th-for="details">
+						<span class="vertical-center" th:style="'border : 1px solid grey;border-radius:5px'">
+							<img th:src="@{icon/icons8-more-details-50.png}" th:style="'width:30px;height:30px;'">
+							Add/Edit Details
+						</span>
+					</li>
+					<li class="admin-list" th:style="'display : inline-block'" data-th-for="product">
+						<span class="vertical-center" th:style="'border : 1px solid grey;border-radius:5px'">
+							<img th:src="@{icon/icons8-product-24.png}" th:style="'width:30px;height:30px;'">
+							Add/Edit Product
+						</span>
+					</li>
+				</ul>
+			</div>
+			<div class="responsive-container horizontal-center-box">
+				<div class="absolute adminCards" data-th-for="media">
+					<h1>Add Media</h1>
+					<form method="post" th:action="@{/add-media}" th:object="${media}" th:method="post"  th:style="'width:80%;display:flex;flex-wrap:wrap;border:1px solid grey; justify-content:center;'">
+						<input type="text" placeholder="Product Name" th:field="*{productName}">
+						<input type="text" placeholder="image1 Url" th:field="*{image1}">
+						<input type="text" placeholder="image2 Url" th:field="*{image2}">
+						<input type="text" placeholder="image3 Url" th:field="*{image3}">
+						<input type="text" placeholder="image4 Url" th:field="*{image4}">
+						<input type="text" placeholder="image5 Url" th:field="*{image5}">
+						<button>Submit</button>
+					</form>
+				</div>
+				<div class="absolute adminCards hidden" data-th-for="category">
+					<h1>Add Category</h1>
+					<form method="post" th:action="@{/add-category}" th:object="${category}" th:style="'display:flex;flex-wrap:wrap'">
+						<input type="text" placeholder="Add Category" th:field="*{name}">
+						<button>Add</button>
+					</form>
+				</div>
+				<div class="absolute adminCards hidden" data-th-for="details">
+					<h1>Product</h1>
+					<form method="post" th:action="@{/add-product}" th:object="${product}" th:style="'display:flex;flex-wrap:wrap'">
+						<input type="text" placeholder="product_name" th:field="*{product_name}">
+						<input type="text" placeholder="description" th:field="*{description}">
+						<select th:field="*{category}">
+							<option th:each="category : ${categoryList}" th:value="${category.id}" th:text="${category.name}"></option>
+						</select>
+						<input type="text" placeholder="price" th:field="*{price}">
+						<input type="text" placeholder="imageUrl" th:field="*{imageUrl}">
+						<input type="number" placeholder="quantity" th:field="*{quantity}">
+						<select th:field="*{productDetails}">
+							<option th:each="details : ${detailList}" th:value="${details.id}" th:text="${details.productName}"></option>
+						</select>
+						<button>Submit</button>
+					</form>
+				</div>
+				<div class="absolute adminCards hidden" data-th-for="product">
+					<h1>Product-Detials</h1>
+					<form method="post" th:action="@{/add-productDetails}" th:object="${productDetails}" th:style="'display:flex;flex-wrap:wrap'">
+						<input type="text" placeholder="productName" th:field="*{productName}">
+						<input type="text" placeholder="description" th:field="*{description}">
+						<input type="text" placeholder="color" th:field="*{color}">
+						<input type="text" placeholder="size" th:field="*{size}">
+						<input type="text" placeholder="prize" th:field="*{price}">
+<!--						<input type="text" placeholder="media" th:field="*{media}">-->
+						<select th:field="*{media}">
+							<option th:each="media : ${mediaList}" th:value="${media.getId()}" th:text="${media.getProductName()}"></option>
+						</select>
+						<button>Submit</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/popper.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/main.js"></script>
+
+	</body>
+</html>
+

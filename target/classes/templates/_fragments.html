@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fragments</title>
+</head>
+<body>
+<div th:fragment="navbar">
+  <nav>
+    <div class="menu-icon">
+      <span class="fas fa-bars"></span>
+    </div>
+    <div class="logo">
+      <img th:src="@{images/insane.png}" th:style="'width:50px;height:50px'">
+    </div>
+    <div class="nav-items">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Categories</a></li>
+    </div>
+    <div class="search-icon">
+      <span class="fas fa-search"></span>
+    </div>
+    <div class="cancel-icon">
+      <span class="fas fa-times"></span>
+    </div>
+    <div th:style="'margin-right : 20px;position : relative'">
+      <img th:src="@{images/user.png}" alt="user icon" th:style="'width:25px;height:30px'">
+
+      <div th:style="'position : absolute;top : 140%'">
+        <a th:href="@{/login}" th:if="${true}">
+         <button>LogIn</button>
+        </a>
+
+        <a th:href="@{/logout}" th:if="${true}">
+          <button>Logout</button>
+        </a>
+      </div>
+
+    </div>
+    <div th:style="'margin-right : 20px'">
+      <a th:href="@{/cart}">
+        <img th:src="@{images/trolley.png}" alt="user icon" th:style="'width:25px;height:30px'">
+      </a>
+    </div>
+    <form action="#">
+      <input type="search" class="search-data" placeholder="Search" required>
+      <button type="submit" class="fas fa-search"></button>
+    </form>
+  </nav>
+</div>
+</body>
+</html>
